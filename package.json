@@ -1,0 +1,15 @@
+{
+    "name": "com.liminal.augment",
+    "displayName": "Augment",
+    "version": "1.0.0",
+    "description": "A utility package for commonly used functions.",
+    "keywords": [
+        "utility",
+        "augment"
+    ],
+    "category": "Unity",    
+    "dependencies": 
+    {
+        "com.neuecc.unirx":"0.0.1"
+    }
+}
