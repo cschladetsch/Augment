@@ -1,10 +1,10 @@
 {
-    "name": "UtilityEditor",
-    "references": [],
-    "optionalUnityReferences": [],
-    "includePlatforms": [
-        "Editor"
+    "name": "Augment",
+    "references": [
+        "UniRxMain"
     ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

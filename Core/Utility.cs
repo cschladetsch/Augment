@@ -15,12 +15,37 @@ namespace Augment
     {
         private static readonly Random _rand = new Random(DateTime.Now.Millisecond);
 
+        public static string SanitisePath(this string path)
+        {
+            path = path.Replace("%20", " ");
+            path = path.Replace('\\', '/');
+            if (path.EndsWith("/"))
+                path = path.Substring(0, path.Length - 1);
+            if (path.StartsWith("/"))
+                path = path.Substring(1);
+            return path;
+        }
+
         /// <summary>
         /// Returns a random element in an array.
         /// </summary>
         public static TElement GetRandom<TElement>(this TElement[] array)
         {
             return array[_rand.Next(0, array.Length)];
+        }
+
+        /// <summary>
+        /// Puts the string into the Clipboard.
+        /// </summary>
+        /// <param name="str"></param>
+        public static void CopyToClipboard(string str)
+        {
+            var textEditor = new TextEditor
+            {
+                text = str
+            };
+            textEditor.SelectAll();
+            textEditor.Copy();
         }
 
         public static TElement GetRandom<TElement>(this List<TElement> list)
