@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -144,6 +144,16 @@ namespace Augment
             {
                 action(pair.Previous, pair.Current);
             });
+        }
+
+        public static void Bind<T>(this TextMeshProUGUI tmp, IReadOnlyReactiveProperty<T> prop)
+        {
+            prop.Subscribe(x => tmp.text = x.ToString()).AddTo(tmp);
+        }
+
+        public static void Bind<T>(this Text text, IReadOnlyReactiveProperty<T> prop)
+        {
+            prop.Subscribe(x => text.text = x.ToString()).AddTo(text);
         }
     }
 }
