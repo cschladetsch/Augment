@@ -138,14 +138,6 @@ namespace Augment
                 .AddTo(toggle);
         }
 
-        public static IDisposable StateChange<T>(this IObservable<T> observable, Action<T, T> action)
-        {
-            return observable.Pairwise().Subscribe(pair =>
-            {
-                action(pair.Previous, pair.Current);
-            });
-        }
-
         public static void Bind<T>(this TextMeshProUGUI tmp, IReadOnlyReactiveProperty<T> prop)
         {
             prop.Subscribe(x => tmp.text = x.ToString()).AddTo(tmp);
@@ -154,6 +146,14 @@ namespace Augment
         public static void Bind<T>(this Text text, IReadOnlyReactiveProperty<T> prop)
         {
             prop.Subscribe(x => text.text = x.ToString()).AddTo(text);
+        }
+
+        public static IDisposable StateChange<T>(this IObservable<T> observable, Action<T, T> action)
+        {
+            return observable.Pairwise().Subscribe(pair =>
+            {
+                action(pair.Previous, pair.Current);
+            });
         }
     }
 }
