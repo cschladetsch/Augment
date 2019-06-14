@@ -1,6 +1,7 @@
 ﻿﻿using System;
 using System.Collections.Generic;
-using TMPro;
+ using System.Runtime.CompilerServices;
+ using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -140,11 +141,22 @@ namespace Augment
 
         public static void Bind<T>(this TextMeshProUGUI tmp, IReadOnlyReactiveProperty<T> prop)
         {
+            if (tmp == null)
+            {
+                Debug.LogError($"TextMeshPro field not set");
+                return;
+            }
+
             prop.Subscribe(x => tmp.text = x.ToString()).AddTo(tmp);
         }
 
         public static void Bind<T>(this Text text, IReadOnlyReactiveProperty<T> prop)
         {
+            if (text == null)
+            {
+                Debug.LogError($"Text field not set");
+                return;
+            }
             prop.Subscribe(x => text.text = x.ToString()).AddTo(text);
         }
 
