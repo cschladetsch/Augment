@@ -1,7 +1,6 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
- using System.Runtime.CompilerServices;
- using TMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -158,6 +157,14 @@ namespace Augment
                 return;
             }
             prop.Subscribe(x => text.text = x.ToString()).AddTo(text);
+        }
+
+        public static void DisposeAll(this IList<IDisposable> disposableCollection)
+        {
+            foreach (var disposable in disposableCollection)
+                disposable.Dispose();
+
+            disposableCollection.Clear();
         }
 
         public static IDisposable StateChange<T>(this IObservable<T> observable, Action<T, T> action)
