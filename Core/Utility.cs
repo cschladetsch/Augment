@@ -116,11 +116,11 @@ namespace Augment
             return _rand.NextDouble() < percent;
         }
 
-        public static void Bind(this Button button, Action action)
+        public static IDisposable Bind(this Button button, Action action)
         {
             Assert.IsNotNull(button);
             Assert.IsNotNull(action);
-            button.OnClickAsObservable()
+            return button.OnClickAsObservable()
                 .Subscribe(_ => action())
                 .AddTo(button);
         }
@@ -138,25 +138,23 @@ namespace Augment
                 .AddTo(toggle);
         }
 
-        public static void Bind<T>(this TextMeshProUGUI tmp, IReadOnlyReactiveProperty<T> prop)
+        public static IDisposable Bind<T>(this TextMeshProUGUI tmp, IReadOnlyReactiveProperty<T> prop)
         {
-            if (tmp == null)
-            {
-                Debug.LogError($"TextMeshPro field not set");
-                return;
-            }
+            if (tmp != null)
+                return prop.Subscribe(x => tmp.text = x.ToString()).AddTo(tmp);
 
-            prop.Subscribe(x => tmp.text = x.ToString()).AddTo(tmp);
+            Debug.LogError("TextMeshPro field not set");
+            return null;
+
         }
 
-        public static void Bind<T>(this Text text, IReadOnlyReactiveProperty<T> prop)
+        public static IDisposable Bind<T>(this Text text, IReadOnlyReactiveProperty<T> prop)
         {
-            if (text == null)
-            {
-                Debug.LogError($"Text field not set");
-                return;
-            }
-            prop.Subscribe(x => text.text = x.ToString()).AddTo(text);
+            if (text != null)
+                return prop.Subscribe(x => text.text = x.ToString()).AddTo(text);
+
+            Debug.LogError("Text field not set");
+            return null;
         }
 
         public static void DisposeAll(this IList<IDisposable> disposableCollection)
