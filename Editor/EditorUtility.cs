@@ -1,11 +1,12 @@
 ﻿#if UNITY_EDITOR
-using System.Linq;
-
-using UnityEditor;
-using UnityEngine;
 
 namespace Augment
 {
+    using System.Linq;
+
+    using UnityEditor;
+    using UnityEngine;
+
     public static class EditorUtility
     {
         private static T[] LoadAssetsAtPath<T>(string filter, string[] searchInFolders)
@@ -18,4 +19,6 @@ namespace Augment
         }
     }
 }
-#endif
+
+#endif // UNITY_EDITOR
+

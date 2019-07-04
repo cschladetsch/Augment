@@ -2,13 +2,14 @@
     "name": "com.liminal.augment",
     "displayName": "Augment",
     "version": "1.0.0",
-    "description": "A utility package for commonly used functions.",
+    "description": "A utility package containing common functionality.",
     "keywords": [
         "utility",
+        "liminalvr",
         "augment"
     ],
-    "category": "Unity",    
-    "dependencies": 
+    "category": "Unity",
+    "dependencies":
     {
         "com.neuecc.unirx":"0.0.1"
     }

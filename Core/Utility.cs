@@ -1,20 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-using UnityEngine.Assertions;
-using UnityEngine.UI;
-
-using UniRx;
-
-using Random = System.Random;
-
-namespace Augment
+﻿namespace Augment
 {
+    using System;
+    using System.Collections.Generic;
+
+    using TMPro;
+    using UnityEngine;
+    using UnityEngine.Assertions;
+    using UnityEngine.UI;
+
+    using UniRx;
+
+    using Random = System.Random;
+
+    /// <summary>
+    /// General utility functionality.
+    /// </summary>
     public static class Utility
     {
         private static readonly Random _rand = new Random(DateTime.Now.Millisecond);
 
+        /// <summary>
+        /// Clean a path name, which should be done by Path.Combine.
+        /// </summary>
         public static string SanitisePath(this string path)
         {
             path = path.Replace("%20", " ");
@@ -27,25 +34,21 @@ namespace Augment
         }
 
         /// <summary>
+        /// Puts the string into the Clipboard.
+        /// </summary>
+        public static void CopyToClipboard(string str)
+        {
+            var textEditor = new TextEditor { text = str };
+            textEditor.SelectAll();
+            textEditor.Copy();
+        }
+
+        /// <summary>
         /// Returns a random element in an array.
         /// </summary>
         public static TElement GetRandom<TElement>(this TElement[] array)
         {
             return array[_rand.Next(0, array.Length)];
-        }
-
-        /// <summary>
-        /// Puts the string into the Clipboard.
-        /// </summary>
-        /// <param name="str"></param>
-        public static void CopyToClipboard(string str)
-        {
-            var textEditor = new TextEditor
-            {
-                text = str
-            };
-            textEditor.SelectAll();
-            textEditor.Copy();
         }
 
         public static TElement GetRandom<TElement>(this List<TElement> list)
