@@ -62,6 +62,12 @@
                 list.Swap(i, _rand.Next(i, list.Count));
         }
 
+        public static void Shuffle<T>(this T[] list)
+        {
+            for (var i = 0; i < list.Length; i++)
+                list.Swap(i, _rand.Next(i, list.Length));
+        }
+
         /// <summary>
         /// Connect this collection to another so that it reacts to additions and removals from the connected collection.
         /// </summary>
@@ -166,6 +172,11 @@
                 disposable.Dispose();
 
             disposableCollection.Clear();
+        }
+
+        public static string MakeFilename(this DateTime when)
+        {
+            return $"{when:yy-MM-dd}T{when:HH-mm-ss}";
         }
 
         public static IDisposable StateChange<T>(this IObservable<T> observable, Action<T, T> action)
