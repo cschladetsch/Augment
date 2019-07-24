@@ -2,14 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-
     using TMPro;
     using UnityEngine;
     using UnityEngine.Assertions;
     using UnityEngine.UI;
-
     using UniRx;
-
     using Random = System.Random;
 
     /// <summary>
@@ -18,6 +15,15 @@
     public static class Utility
     {
         private static readonly Random _rand = new Random(DateTime.Now.Millisecond);
+
+        /// <summary>
+        /// Make an enumerable of all integers between min and max
+        /// </summary>
+        public static IEnumerable<int> MakeRange(int min, int max)
+        {
+            for (var i = min; i <= max; ++i)
+                yield return i;
+        }
 
         /// <summary>
         /// Clean a path name, which should be done by Path.Combine.
