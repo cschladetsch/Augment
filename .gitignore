@@ -8,6 +8,8 @@
 /Temp/
 /Packages/
 
+.current
+
 # Visual Studio cache directory
 .vs/
 
