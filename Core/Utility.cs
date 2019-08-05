@@ -79,6 +79,13 @@
                 list.Swap(i, _rand.Next(i, list.Length));
         }
 
+        public static void Shuffle<T>(this T[] list, int seed)
+        {
+            var rand = new Random(seed);
+            for (var i = 0; i < list.Length; i++)
+                list.Swap(i, rand.Next(i, list.Length));
+        }
+
         /// <summary>
         /// Connect this collection to another so that it reacts to additions and removals from the connected collection.
         /// </summary>
