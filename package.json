@@ -1,11 +1,10 @@
 {
-    "name": "com.liminal.augment",
+    "name": "com.cschladetsch.augment",
     "displayName": "Augment",
     "version": "1.0.0",
     "description": "A utility package containing common functionality.",
     "keywords": [
         "utility",
-        "liminalvr",
         "augment"
     ],
     "category": "Unity",
